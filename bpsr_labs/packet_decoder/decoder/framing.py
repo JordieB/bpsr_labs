@@ -30,6 +30,7 @@ class NotifyFrame:
     method_id: int
     payload: bytes
     was_compressed: bool
+    offset: int
 
 
 class FrameReader:
@@ -83,7 +84,7 @@ class FrameReader:
             self.fragment_histogram[fragment_type] += 1
 
             if fragment_type == _NOTIFY_FRAGMENT:
-                notify = self._parse_notify(bytes(body), is_zstd)
+                notify = self._parse_notify(bytes(body), is_zstd, offset)
                 if notify is not None:
                     self.notify_frames += 1
                     yield notify
@@ -101,7 +102,7 @@ class FrameReader:
 
             offset = end
 
-    def _parse_notify(self, body: bytes, is_zstd: bool) -> Optional[NotifyFrame]:
+    def _parse_notify(self, body: bytes, is_zstd: bool, frame_offset: int) -> Optional[NotifyFrame]:
         if len(body) < 16:
             self.resync_events += 1
             return None
@@ -117,6 +118,7 @@ class FrameReader:
             method_id=method_id,
             payload=payload,
             was_compressed=was_decompressed,
+            offset=frame_offset,
         )
 
     def _maybe_decompress(self, data: bytes, flagged: bool) -> tuple[bytes, bool]:
@@ -128,17 +130,21 @@ class FrameReader:
 
         # Limit decompression size to prevent resource exhaustion
         max_decompressed_size = 10 * 1024 * 1024  # 10MB limit
-        decompressor = zstandard.ZstdDecompressor(max_window_size=2**20)  # 1MB window
-        with decompressor.stream_reader(io.BytesIO(data)) as reader:
-            chunks: list[bytes] = []
-            total_size = 0
-            while True:
-                chunk = reader.read(16384)
-                if not chunk:
-                    break
-                total_size += len(chunk)
-                if total_size > max_decompressed_size:
-                    self.resync_events += 1  # Count as resync for oversized decompression
-                    return data, False
-                chunks.append(chunk)
+        try:
+            decompressor = zstandard.ZstdDecompressor(max_window_size=2**23)  # 8MB window
+            with decompressor.stream_reader(io.BytesIO(data)) as reader:
+                chunks: list[bytes] = []
+                total_size = 0
+                while True:
+                    chunk = reader.read(16384)
+                    if not chunk:
+                        break
+                    total_size += len(chunk)
+                    if total_size > max_decompressed_size:
+                        self.resync_events += 1  # Count as resync for oversized decompression
+                        return data, False
+                    chunks.append(chunk)
+        except zstandard.ZstdError:
+            self.resync_events += 1
+            return data, False
         return b"".join(chunks), True

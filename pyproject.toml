@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "mit"}
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<4.0"
 keywords = ["packet-analysis", "reverse-engineering", "bpsr"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -23,12 +23,13 @@ classifiers = [
 
 dependencies = [
     "protobuf>=6.33.0,<7.0.0",
-    "zstandard>=0.25.0,<0.26.0", 
+    "zstandard>=0.25.0,<0.26.0",
     "rich>=14.2.0,<15.0.0",
     "pydivert>=2.1.0,<3.0.0",
     "click>=8.0.0",
     "pydantic>=2.0.0",
     "pandas>=2.0.0",
+    "bbpb>=1.4.0,<2.0.0",
     "matplotlib>=3.7.0",
     "seaborn>=0.12.0",
 ]

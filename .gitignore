@@ -10,12 +10,14 @@ data/captures/*.jsonl
 data/captures/*.json
 data/game-data/*
 !data/game-data/.gitkeep
+!data/game-data/item_name_map.json
 
 # Output/input files
 # *.bin  # temporarily allow bin files to be committed
 # *.txt  # temporarily allow txt files to be committed
 *.jsonl
 *.json
+!data/game-data/item_name_map.json
 *.csv
 *.log
 *.err
