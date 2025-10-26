@@ -11,11 +11,11 @@ data/captures/*.json
 data/game-data/*
 !data/game-data/.gitkeep
 
-# Output files
-*.bin
+# Output/input files
+# *.bin  # temporarily allow bin files to be committed
+# *.txt  # temporarily allow txt files to be committed
 *.jsonl
 *.json
-*.txt
 *.csv
 *.log
 *.err
