@@ -47,11 +47,14 @@ poetry run bpsr-labs --help
 Use `poe` to run project tasks:
 
 ```bash
-poe setup          # Complete project setup
-poe test           # Run tests
-poe format         # Format code
-poe check          # Run all quality checks
-poe --help         # See all available tasks
+poe setup                    # Complete project setup
+poe test                     # Run tests
+poe format                   # Format code
+poe check                    # Run all quality checks
+poe setup-client-extraction  # Setup client extraction tools
+poe dump-metadata            # Extract game metadata
+poe extract-pkg              # Extract PKG files
+poe --help                   # See all available tasks
 ```
 
 ## 📁 Project Structure
@@ -67,9 +70,9 @@ bpsr-labs/
 │   └── Orchestrator.Cli/       # C# orchestrator
 ├── scripts/                    # Helper scripts
 │   ├── generate_protos.py      # Protobuf generation
-│   ├── setup.ps1               # Vendor tools setup
-│   ├── dump.ps1                # Metadata dump script
-│   └── extract.ps1             # PKG extraction script
+│   ├── setup.ps1               # Client extraction setup (via poe)
+│   ├── dump.ps1                # Metadata dump (via poe)
+│   └── extract.ps1             # PKG extraction (via poe)
 ├── tests/                      # Test suites
 ├── docs/                       # Documentation
 │   ├── setup.md                # Setup guide

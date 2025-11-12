@@ -68,10 +68,10 @@ A utility project for dumping Il2Cpp metadata.
 ### Initial Setup
 
 1. **Set up vendor tools**:
-   ```powershell
-   .\scripts\setup.ps1
+   ```bash
+   poe setup-client-extraction
    ```
-   This script fetches Il2CppDumper and StarResonanceTool to the `tools/` directory.
+   This task fetches Il2CppDumper and StarResonanceTool to the `tools/` directory and builds the C# projects.
 
 2. **Configure environment variables**:
    Copy `.env.example` to `.env` and configure:
@@ -106,19 +106,19 @@ A utility project for dumping Il2Cpp metadata.
    ```
    This extracts `global-metadata.dat` from the running game.
 
-2. **Run the orchestrator**:
-   ```powershell
-   .\scripts\dump.ps1
+2. **Run the metadata dumper**:
+   ```bash
+   poe dump-metadata
    ```
-   This uses Il2CppDumper to process the metadata.
+   This uses Il2CppMetadataDump to extract `global-metadata.dat` from the running game process.
 
 ### Extracting PKG Files
 
-```powershell
-.\scripts\extract.ps1
+```bash
+poe extract-pkg
 ```
 
-This uses StarResonanceTool to extract protobufs, tables, and other assets from PKG files.
+This uses Il2CppDumper and StarResonanceTool to extract protobufs, tables, and other assets from PKG files.
 
 ## Integration with Existing Tools
 
@@ -138,12 +138,15 @@ Both approaches can be used together to get a complete picture of the game's dat
 | `OUTPUT_DIR` | Output directory for extracted data | `C:\BPSR\extracted` |
 | `DUMMY_DLL` | Path to Il2CppDumper DummyDll directory | `C:\tools\Il2CppDumper\DummyDll` |
 
-## Scripts
+## Poe Tasks
 
-- **`scripts/setup.ps1`**: Fetches and sets up vendor tools (Il2CppDumper, StarResonanceTool)
-- **`scripts/dump.ps1`**: Runs metadata dump using Il2CppDumper
-- **`scripts/extract.ps1`**: Extracts PKG files using StarResonanceTool
-- **`scripts/import-dotenv.ps1`**: Loads environment variables from `.env` file
+Client extraction functionality is accessed through `poe` tasks:
+
+- **`poe setup-client-extraction`**: Fetches and sets up vendor tools (Il2CppDumper, StarResonanceTool) and builds C# projects
+- **`poe dump-metadata`**: Extracts `global-metadata.dat` from running game process using Il2CppMetadataDump
+- **`poe extract-pkg`**: Extracts PKG files using Il2CppDumper and StarResonanceTool
+
+These tasks use PowerShell scripts under the hood (located in `scripts/`) which handle environment variable loading and tool execution.
 
 ## Future Development
 
@@ -156,7 +159,7 @@ Both approaches can be used together to get a complete picture of the game's dat
 
 ### Vendor tools not found
 
-Run `.\scripts\setup.ps1` to fetch the required tools.
+Run `poe setup-client-extraction` to fetch the required tools.
 
 ### Environment variables not loaded
 

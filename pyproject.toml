@@ -148,6 +148,11 @@ decode = { script = "bpsr_labs.cli:decode", help = "Decode combat packets (alias
 dps = { script = "bpsr_labs.cli:dps", help = "Calculate DPS metrics (alias)" }
 trade-decode = { script = "bpsr_labs.cli:trade_decode", help = "Decode trading center packets (alias)" }
 
+# Client extraction tasks
+setup-client-extraction = { shell = "powershell -File scripts/setup.ps1", help = "Setup client extraction tools and build projects" }
+dump-metadata = { shell = "powershell -File scripts/dump.ps1", help = "Extract global-metadata.dat from running game" }
+extract-pkg = { shell = "powershell -File scripts/extract.ps1", help = "Extract PKG files using Il2CppDumper and StarResonanceTool" }
+
 # Cleanup tasks
 clean = { sequence = ["clean-protos", "_clean-pyc", "_clean-test"], help = "Clean all generated files" }
 _clean-pyc = { cmd = "python -c \"import pathlib; [p.unlink() for p in pathlib.Path('.').rglob('*.py[co]')]; [p.rmdir() for p in pathlib.Path('.').rglob('__pycache__')]\"", help = "Remove Python cache files" }
