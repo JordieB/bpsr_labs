@@ -261,3 +261,29 @@ __marimo__/
 *.swp
 *.swo
 *~
+
+# C++ build artifacts
+*.obj
+*.o
+*.exe
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+!CMakeLists.txt
+
+# C# / .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.dll
+*.pdb
+!src/**/*.dll  # Allow DLLs in specific source locations if needed
+
+# Vendor tools and output
+tools/
+output/
+DummyDll/

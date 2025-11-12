@@ -11,6 +11,7 @@ A comprehensive toolkit for analyzing and researching Blue Protocol Star Resonan
 - 🏪 Extract and analyze trading center listings with item name resolution
 - 🔧 Protobuf-based V2 decoders for structured data parsing
 - 🎯 Modern CLI with unified interface
+- 🔍 **Client Extraction** - Extract game metadata and assets directly from the BPSR client (new)
 
 ## 🚀 Quick Start
 
@@ -58,23 +59,30 @@ poe --help         # See all available tasks
 ```
 bpsr-labs/
 ├── src/
-│   └── bpsr_labs/           # Main package
-│       ├── cli.py            # Unified CLI
-│       └── packet_decoder/   # Packet analysis tools
-├── scripts/                  # Helper scripts
-│   └── generate_protos.py    # Protobuf generation
-├── tests/                    # Test suites
-├── docs/                     # Documentation
-│   ├── setup.md              # Setup guide
-│   ├── commands.md           # Command reference
-│   ├── examples.md           # Code examples
-│   └── packet-analysis.md    # Packet analysis guide
-├── data/                     # Data storage
-│   ├── schemas/              # Protobuf schemas
-│   └── game-data/            # Game data mappings
-├── refs/                     # Git submodules
-│   └── StarResonanceData/    # Community protobuf definitions
-└── pyproject.toml            # Project configuration
+│   ├── bpsr_labs/              # Main Python package
+│   │   ├── cli.py              # Unified CLI
+│   │   └── packet_decoder/     # Packet analysis tools
+│   ├── client-extraction/      # C++ metadata extractor
+│   ├── Il2CppMetadataDump/     # C# metadata dump utility
+│   └── Orchestrator.Cli/       # C# orchestrator
+├── scripts/                    # Helper scripts
+│   ├── generate_protos.py      # Protobuf generation
+│   ├── setup.ps1               # Vendor tools setup
+│   ├── dump.ps1                # Metadata dump script
+│   └── extract.ps1             # PKG extraction script
+├── tests/                      # Test suites
+├── docs/                       # Documentation
+│   ├── setup.md                # Setup guide
+│   ├── commands.md             # Command reference
+│   ├── examples.md             # Code examples
+│   ├── packet-analysis.md      # Packet analysis guide
+│   └── client-extraction.md    # Client extraction guide
+├── data/                       # Data storage
+│   ├── schemas/                # Protobuf schemas
+│   └── game-data/              # Game data mappings
+├── refs/                       # Git submodules
+│   └── StarResonanceData/      # Community protobuf definitions
+└── pyproject.toml              # Project configuration
 ```
 
 ## 📖 Documentation
@@ -84,6 +92,7 @@ bpsr-labs/
 - **[Code Examples](docs/examples.md)** - Python usage examples
 - **[Packet Analysis Guide](docs/packet-analysis.md)** - Capturing and analyzing packets
 - **[Protobuf Integration](docs/protobuf-integration-guide.md)** - V2 decoder documentation
+- **[Client Extraction](docs/client-extraction.md)** - Extract game data from client
 - **[Poe Task Guidelines](docs/poe-task-guidelines.md)** - Task type best practices
 
 ## 🤝 Contributing
