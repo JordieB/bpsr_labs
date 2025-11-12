@@ -1,0 +1,1 @@
+{"method_id": 46, "message_type": "blueprotobuf_package.SyncToMeDeltaInfo", "data": {"timestamp_ms": 1710000000, "entities": [{"monster_id": 99999, "hp_pct": 100.0, "channel": 101, "map_id": 1001}]}}

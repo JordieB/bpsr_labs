@@ -1,0 +1,5 @@
+{"method_id": 46, "message_type": "blueprotobuf_package.SyncToMeDeltaInfo", "data": {"timestamp_ms": 1710000001, "entities": [{"monster_id": 80006, "boss_name": "Golden Juggernaut", "hp_pct": 99.5, "channel": 101, "map_id": 1101, "instance_id": "run-1"}]}}
+{"method_id": 46, "message_type": "blueprotobuf_package.SyncToMeDeltaInfo", "data": {"timestamp_ms": 1710000500, "entities": [{"monster_id": 80006, "hp_pct": 75.0, "channel": 101, "map_id": 1101, "instance_id": "run-1"}]}}
+{"method_id": 46, "message_type": "blueprotobuf_package.SyncToMeDeltaInfo", "data": {"timestamp_ms": 1710000800, "entities": [{"monster_id": 80006, "hp_pct": 50.0, "channel": 101, "map_id": 1101, "instance_id": "run-1"}]}}
+{"method_id": 46, "message_type": "blueprotobuf_package.SyncToMeDeltaInfo", "data": {"timestamp_ms": 1710001200, "entities": [{"monster_id": 80006, "hp_pct": 10.0, "channel": 101, "map_id": 1101, "instance_id": "run-1"}]}}
+{"method_id": 46, "message_type": "blueprotobuf_package.SyncToMeDeltaInfo", "data": {"timestamp_ms": 1710001500, "entities": [{"monster_id": 80006, "hp_pct": 0.0, "channel": 101, "map_id": 1101, "instance_id": "run-1"}]}}

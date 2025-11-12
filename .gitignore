@@ -20,6 +20,8 @@ data/game-data/*
 # *.txt  # temporarily allow txt files to be committed
 *.jsonl
 *.json
+!offline_test/samples/*.jsonl
+!data/bptimer/boss_mapping.json
 !data/schemas/combat_method_map.json
 !data/game-data/item_name_map.json
 !examples/advanced-analysis/trading_listing_example.json
@@ -74,6 +76,7 @@ MANIFEST
 #   before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+!client/client.spec
 
 # Installer logs
 pip-log.txt
